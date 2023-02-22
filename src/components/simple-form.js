@@ -11,20 +11,18 @@ const SimpleFormSubmition = () => {
         username: '',
         password: ''
     });
+    let [inlineCondition, setInlineCondition] = useState(false);
 
     let message = "Hi there! Good Morning"
     // let userName;
 
-    let student_information = {
-        name: "Santhosh",
-        course: "Full Stack",
-        career: "IT",
-        mob: "123456789"
-    }
-
     const onSubmitForm = () => {
         console.log(loginForm);
     };
+    const handleRendering = (condition) => {
+        setInlineCondition(condition)
+        // console.log(condition);
+    }
 
     const onHandleInput = (event) => {
         // setUserName(event.target.value);
@@ -49,9 +47,27 @@ const SimpleFormSubmition = () => {
         <div className="space">
             <label className="label">Enter Your Password</label>
             <input type='password'  placeholder='Enter your Password' onChange={onHandleInput} id="password"/>
+            <img src={require('../images/open-eye.png')} alt="open-eye" className="password-icon" />
+            <img src={require('../images/close-eye.png')} alt="close-eye" className="password-icon" />
         </div>
         <div className="space">
             <button onClick={ () => onSubmitForm()}>Submit Form</button>
+        </div>
+        <div>
+            <h2>Conditional Rendering</h2>          
+            <button onClick={() => handleRendering(true)}>Show Message</button>
+            <button onClick={() => handleRendering(false)}>Hide Message</button>
+
+            {/* {false && <div>
+                <h1>This is a Inline IF condition</h1>
+                <h1>It will show & hide based on a Condition</h1>
+                </div>
+            }  */}
+            {inlineCondition && <div>
+                <h1>This is a Inline IF condition</h1>
+                <h1>It will show & hide based on a Condition</h1>
+                </div>
+            } 
         </div>
      </div>
     )
