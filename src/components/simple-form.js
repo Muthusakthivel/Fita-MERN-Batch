@@ -12,6 +12,8 @@ const SimpleFormSubmition = () => {
         password: ''
     });
     let [inlineCondition, setInlineCondition] = useState(false);
+    let [ifElseCondition, setIfElseCondition] = useState(false);
+    let [passwordVisibility, setPasswordVisibility] = useState(false);
 
     let message = "Hi there! Good Morning"
     // let userName;
@@ -23,7 +25,15 @@ const SimpleFormSubmition = () => {
         setInlineCondition(condition)
         // console.log(condition);
     }
-
+    const handleIfElseRendering = () => {
+         let condition = !ifElseCondition;
+        //  alert(condition);
+        setIfElseCondition(condition);
+    }   
+    
+    const handlePasswordVisibility = (condition) => {
+        setPasswordVisibility(condition);
+    }
     const onHandleInput = (event) => {
         // setUserName(event.target.value);
         // console.log(userName);
@@ -46,9 +56,14 @@ const SimpleFormSubmition = () => {
         </div>
         <div className="space">
             <label className="label">Enter Your Password</label>
-            <input type='password'  placeholder='Enter your Password' onChange={onHandleInput} id="password"/>
-            <img src={require('../images/open-eye.png')} alt="open-eye" className="password-icon" />
-            <img src={require('../images/close-eye.png')} alt="close-eye" className="password-icon" />
+            <input type={passwordVisibility ? "text" : "password"}  placeholder='Enter your Password' onChange={onHandleInput} id="password"/>
+            {
+                passwordVisibility ? <img src={require('../images/open-eye.png')} alt="open-eye" className="password-icon" onClick={() => handlePasswordVisibility(false)} />
+                :
+                <img src={require('../images/close-eye.png')} alt="close-eye" className="password-icon"  onClick={() => handlePasswordVisibility(true)}/>
+            }
+            
+            
         </div>
         <div className="space">
             <button onClick={ () => onSubmitForm()}>Submit Form</button>
@@ -68,6 +83,15 @@ const SimpleFormSubmition = () => {
                 <h1>It will show & hide based on a Condition</h1>
                 </div>
             } 
+            <div>
+                <h1>Inline IF-Else Condition</h1>
+                <button onClick={() => handleIfElseRendering()}>Switch ON/OFF </button>
+                {ifElseCondition ? <img src='https://img.freepik.com/free-vector/realistic-light-bulb-with-electricity_23-2149129410.jpg?w=2000' alt="" style={{"width" : "100px"}}/> 
+                :
+                <img src='https://thumbs.dreamstime.com/b/light-bulb-11371329.jpg' alt="" style={{"width" : "100px"}}/> }
+                
+                
+            </div>
         </div>
      </div>
     )
