@@ -10,6 +10,9 @@ const HomePage = () => {
             <NavLink to="/about-us">About Us</NavLink>
             <br></br>
             <NavLink to="/mail">Go To Mail Box</NavLink>
+            <br></br>
+            <NavLink to="/register">Sign Up</NavLink>
+            
         </div>
     )
 }
