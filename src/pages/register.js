@@ -12,8 +12,28 @@ const RegisterPage = () => {
         address: "",
         qualification: ""
     });
+    let [formError, setFormError] = useState({
+        userName: false,
+        email: false,
+        password: false,
+        dateOfBirth: false,
+        gender: false,
+        hobbies: false,
+        address: false,
+        qualification: false
+    });
     const submitRegister = () => {
         console.log(register);
+        setFormError({
+            userName: register.userName === '' ? true : false,
+            email: register.email === '' ? true : false,
+            password: register.password === '' ? true : false,
+            dateOfBirth: register.dateOfBirth === '' ? true : false,
+            gender: register.gender === '' ? true : false,
+            hobbies: register.hobbies === '' ? true : false,
+            address: register.address === '' ? true : false,
+            qualification: register.qualification === '' ? true : false
+        })
     }
 
     const handleFormInput = (event) => {
@@ -23,25 +43,30 @@ const RegisterPage = () => {
     return <div>
         <div className="space">
         <label>Enter Your Name :</label>
-        <input type="text" placeholder="Enter your name" className="register-input" onChange={handleFormInput} name="userName"/>
+        <input type="text" placeholder="Enter your name" className={formError.userName ? "register-input input-error" : "register-input"} onChange={handleFormInput} name="userName"/>
+        {formError.userName && <p className='error'>Please enter a valid user name</p>}
         </div>
         <div className="space">
         <label>Enter Your Email ID :</label>
-        <input type="email" placeholder="Enter your Email ID" className="register-input" onChange={handleFormInput} name="email"/>
+        <input type="email" placeholder="Enter your Email ID" className={formError.email ? "register-input input-error" : "register-input"} onChange={handleFormInput} name="email"/>
+        {formError.email && <p className='error'>Please enter a valid email</p>}
         </div>
         <div className="space">
-        <label>Enter Your Email Password :</label>
+        <label>Enter Your Password :</label>
         <input type="password" placeholder="Enter your Email Password" className="register-input" onChange={handleFormInput} name="password"/>
+        {formError.password && <p className='error'>Please enter a password</p>}
         </div>
         <div className="space">
         <label>Select Your DOB :</label>
         <input type="date"  className="register-input" onChange={handleFormInput} name="dateOfBirth"/>
+        {formError.dateOfBirth && <p className='error'>Please select a date of birth</p>}
         </div>
         <div className="space">
         <label>Select Your Gender :</label>
         <input type="radio" name="gender" onChange={handleFormInput} value="Male"/>Male
         <input type="radio" name="gender" onChange={handleFormInput} value="Female"/>Female
         <input type="radio" name="gender" onChange={handleFormInput} value="Others"/>Others
+        {formError.gender && <p className='error'>Please select any one gender</p>}
         </div>
         <div className="space">
         <label className="register-table">Select Your Hobbies :</label>
@@ -51,10 +76,12 @@ const RegisterPage = () => {
         <input type="checkbox" name="hobbies" onChange={handleFormInput} value="Volleyball"/>Volleyball
         <input type="checkbox" name="hobbies" onChange={handleFormInput} value="Hockey"/>Hockey
         <input type="checkbox" name="hobbies" onChange={handleFormInput} value="Carrom"/>Carrom
+        {formError.hobbies && <p className='error'>Please select any one hobbies</p>}
         </div>
         <div className="space">
             <label> Enter Your Address :</label>
             <textarea placeholder="Enter your Address" className="register-input" name="address" onChange={handleFormInput}></textarea>
+            {formError.address && <p className='error'>Please enter your address</p>}
         </div>
         <div className="space">
             <label className="register-label">Select Your Higher Qualification :</label>
@@ -66,6 +93,7 @@ const RegisterPage = () => {
                 <option>Diploma Degree</option>
                 <option>Master Degree</option>
             </select>
+           {formError.qualification && <p className='error'>Please Select any one qualification</p>}
         </div>
         <div className="space">
             <button onClick={() => submitRegister()}>Create Your Account</button>
