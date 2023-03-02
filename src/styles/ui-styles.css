@@ -1,3 +1,9 @@
+*,::after*, ::before{
+  box-sizing: border-box;
+}
+#root{
+  height: 100vh;
+}
 .lable{
     display: inline-block;
     width: 175px;
@@ -19,13 +25,13 @@
   }
   
   .header{
-    height: 10%;
+    height: 7rem;
     border: 3px solid red;
     box-sizing: border-box;
   }
   
   .main-content{
-    height: 90%;
+    height: 80vh;
     border: 3px solid red;
     box-sizing: border-box;
     display: flex;

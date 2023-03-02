@@ -8,7 +8,7 @@ const RegisterPage = () => {
         password: "",
         dateOfBirth: "",
         gender: "",
-        hobbies: "",
+        hobbies: [],
         address: "",
         qualification: ""
     });
@@ -37,7 +37,18 @@ const RegisterPage = () => {
     }
 
     const handleFormInput = (event) => {
+        if(event.target.name === 'hobbies'){
+            // console.log(event.target.checked);
+         if(event.target.checked){
+            register.hobbies.push(event.target.value);
+         }else{
+            const index = register.hobbies.indexOf(event.target.value);
+            register.hobbies.splice(index, 1);
+         }
+            setRegister({...register, hobbies: register.hobbies})
+        }else{
        setRegister({...register, [event.target.name] : event.target.value })
+        }
     }
 
     return <div>
