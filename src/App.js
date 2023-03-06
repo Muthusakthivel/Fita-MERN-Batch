@@ -7,6 +7,7 @@ import ContactPage from './pages/contact';
 import AboutPage from './pages/about';
 import MailPage from './pages/mail';
 import RegisterPage from './pages/register';
+import UserPage from './pages/users';
 
 import InboxPage from './pages/inbox';
 import SentPage from './pages/sent';
@@ -25,6 +26,7 @@ function App() {
         <Route path='trash' element={<TrashPage />}></Route>
       </Route>
       <Route path='register' element={<RegisterPage />}></Route>
+      <Route path='user' element={<UserPage/>}></Route>
     </Routes>
     </BrowserRouter>
   );
