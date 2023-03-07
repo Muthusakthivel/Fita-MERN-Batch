@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+
 const RegisterPage = () => {
 
     let[register, setRegister] = useState({
@@ -22,6 +23,7 @@ const RegisterPage = () => {
         address: false,
         qualification: false
     });
+    let [accountList, setAccountList] = useState([]);
     const submitRegister = () => {
         console.log(register);
         setFormError({
@@ -33,7 +35,8 @@ const RegisterPage = () => {
             hobbies: register.hobbies === '' ? true : false,
             address: register.address === '' ? true : false,
             qualification: register.qualification === '' ? true : false
-        })
+        });
+        setAccountList([...accountList, register])
     }
 
     const handleFormInput = (event) => {
@@ -52,6 +55,7 @@ const RegisterPage = () => {
     }
 
     return <div>
+        <h1>Register Page</h1>
         <div className="space">
         <label>Enter Your Name :</label>
         <input type="text" placeholder="Enter your name" className={formError.userName ? "register-input input-error" : "register-input"} onChange={handleFormInput} name="userName"/>
@@ -108,6 +112,36 @@ const RegisterPage = () => {
         </div>
         <div className="space">
             <button onClick={() => submitRegister()}>Create Your Account</button>
+        </div>
+        <div style={{"height": "600px"}}>
+            <table id="customers">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email ID</th>
+                        <th>Date Of Birth</th>
+                        <th>Gender</th>
+                        <th>Hobbies</th>
+                        <th>Address</th>
+                        <th>Qualification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {accountList?.map((value, index) => {
+                        return(
+                            <tr key={index}>
+                                <td>{value.userName}</td>
+                                <td>{value.email}</td>
+                                <td>{value.dateOfBirth}</td>
+                                <td>{value.gender}</td>
+                                <td>{value.hobbies}</td>
+                                <td>{value.address}</td>
+                                <td>{value.qualification}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         </div>
     </div>
 } 
