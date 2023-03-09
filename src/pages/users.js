@@ -1,12 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
 
 const UserPage = () => {
 
     let [profiles, setProfiles] = useState();
 
-    const loadProfiles = () =>{
-        const api_url = 'https://reqres.in/api/users?page=2';
+    useEffect(() => {
+        loadProfiles(1);
+    }, [])
+
+    const loadProfiles = (pageNumber) =>{
+        const api_url = 'https://reqres.in/api/users?page=' + pageNumber;
 
         axios.get(api_url)
         .then((response) => {
@@ -47,8 +51,17 @@ const UserPage = () => {
                             )
                         })
                     }
+                    { profiles?.length === 0 &&
+                     <tr>
+                        <td colSpan={4}>No Record Available</td>
+                    </tr>}
                 </tbody>
             </table>
+            <div>
+                <button onClick={() => loadProfiles(1)}>Page1</button>
+                <button onClick={() => loadProfiles(2)}>Page2</button>
+                <button onClick={() => loadProfiles(3)}>Page3</button>
+            </div>
         </div>
     )
 }
