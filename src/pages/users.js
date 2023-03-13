@@ -22,6 +22,20 @@ const UserPage = () => {
             console.log(e)
         })
     }
+    const deleteUser = (user) => {
+        console.log(user.id)
+
+        const url = "https://reqres.in/api/users/" + user.id
+
+        axios.delete(url)
+        .then((response) => {
+            console.log(response)
+            alert("Successfully Profile Has been deleted")
+        })
+        .catch((error) => {
+            console.log(error.message);
+        })
+    }
     return(
         <div>
             <h1>List of Users</h1>
@@ -33,6 +47,7 @@ const UserPage = () => {
                         <th>Name</th>
                         <th>Email ID</th>
                         <th>Profile Pic</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +61,9 @@ const UserPage = () => {
                                     {/* <td>{value.avatar}</td> */}
                                     <td>
                                         <img src={value.avatar} alt="profile"/>
+                                    </td>
+                                    <td>
+                                        <img src={require('../images/delete.png')} alt="profile" style={{"width" : "25px", "cursor" : "pointer"}} onClick={() => deleteUser(value)}/>
                                     </td>
                                 </tr>
                             )
