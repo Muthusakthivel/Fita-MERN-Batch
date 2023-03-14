@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/ui-styles.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import SimpleFormSubmition from './components/simple-form';
 import HomePage from './pages/home';
 import ContactPage from './pages/contact';
@@ -8,6 +8,8 @@ import AboutPage from './pages/about';
 import MailPage from './pages/mail';
 import RegisterPage from './pages/register';
 import UserPage from './pages/users';
+import SettingsPage from './pages/settings';
+import ParentPage from './pages/parent';
 
 import InboxPage from './pages/inbox';
 import SentPage from './pages/sent';
@@ -19,7 +21,7 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='' element={<HomePage/>}></Route>
+      <Route path='/' element={<HomePage/>}></Route>
       <Route path='contact' element={<ContactPage/>}></Route>
       <Route path='about-us' element={<AboutPage/>}></Route>
       <Route path='mail' element={<MailPage/>}>
@@ -31,6 +33,8 @@ function App() {
       </Route>
       <Route path='register' element={<RegisterPage />}></Route>
       <Route path='user' element={<UserPage/>}></Route>
+      <Route path='settings' element={<SettingsPage />}></Route>
+      <Route path='parent' element={<ParentPage />}></Route>
     </Routes>
     </BrowserRouter>
   );
