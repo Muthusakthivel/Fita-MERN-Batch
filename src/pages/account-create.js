@@ -17,7 +17,11 @@ const AccountCreatePage = () => {
         .then((response) => {
             let serverData = response.data;
             console.log(serverData);
-            navigate("/")
+            let result = {
+                account_data : account,
+                server_data: serverData
+            }
+            navigate("/about-us", {state : result})
         }) 
         .catch((error) => {
             alert(error.message);
