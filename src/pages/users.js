@@ -3,7 +3,7 @@ import axios from "axios";
 
 const UserPage = () => {
 
-    let [profiles, setProfiles] = useState();
+    let [profiles, setProfiles] = useState([]);
 
     useEffect(() => {
         loadProfiles(1);

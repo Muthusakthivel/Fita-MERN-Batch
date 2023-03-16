@@ -9,7 +9,7 @@ const Header = () => {
     const handleInput = (event) => {
         console.log(event.target.value);
 
-        context.incomingValue()
+        context.incomingValue(event.target.value);
     }   
     return(
         <div className="header">
