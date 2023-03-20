@@ -1,7 +1,12 @@
 import React, {useState} from "react";
+import { sendUserData } from "../redux/actions/app-action";
+import { useDispatch } from "react-redux";
+
 
 
 const RegisterPage = () => {
+
+    const dispatch = useDispatch();
 
     let[register, setRegister] = useState({
         userName: "",
@@ -37,6 +42,8 @@ const RegisterPage = () => {
             qualification: register.qualification === '' ? true : false
         });
         setAccountList([...accountList, register])
+        
+        dispatch(sendUserData(register));
     }
 
     const handleFormInput = (event) => {

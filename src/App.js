@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/ui-styles.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import { Provider } from 'react-redux';
 import SimpleFormSubmition from './components/simple-form';
 import HomePage from './pages/home';
 import ContactPage from './pages/contact';
@@ -16,9 +17,15 @@ import SentPage from './pages/sent';
 import TrashPage from './pages/trash';
 import AccountCreatePage from './pages/account-create';
 import UpdateUser from './pages/update-users';
+import configureStore from './redux/store/redux-store';
+
+
 
 function App() {
+  
+const reduxStore = configureStore();
   return (
+    <Provider store={reduxStore}>
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<HomePage/>}></Route>
@@ -37,6 +44,7 @@ function App() {
       <Route path='parent' element={<ParentPage />}></Route>
     </Routes>
     </BrowserRouter>
+    </Provider>
   );
 }
 
